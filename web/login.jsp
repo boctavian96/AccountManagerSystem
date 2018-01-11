@@ -92,7 +92,7 @@ span.psw {
            out.println(user);
            out.println(pass);
            
-           if(dbm.login(user, pass)){
+           if(dbm.userExists(user, pass)){
         	   response.sendRedirect(redirectURL);
            }
            

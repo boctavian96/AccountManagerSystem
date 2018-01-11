@@ -6,6 +6,7 @@
 package com.octavian.database;
 
 import com.octavian.config.DbConfig;
+import com.octavian.models.ClientInfo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,23 +44,68 @@ public class DBManager {
         }
     }
     
-    public void executeQuery(String query){
+    public ResultSet execQuery(String query){
         
         try{
          statement = connection.createStatement();
          
             //Executam instructiunea Query
-         statement.execute(query);
+         return statement.executeQuery(query);
         }catch(SQLException e){
             e.printStackTrace();
         }
+        
+        return null;
+    }
+    
+    public boolean userExists(String email, String pass){
+        rs = execQuery("SELECT * FROM Clients WHERE Email="+"\'"+email+"\' AND password=\'" + pass + "\'");
+
+        String pwd = "";
+        String user = ""; //EMAIL
+        
+        try{
+            if(rs.next()){
+                
+                user = rs.getString("Email");
+                pwd = rs.getString("password");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+       
+        if (user.equals(email) && pass.equals(pwd)){
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public ClientInfo getClientInfo(){
+        int id = 0;
+        int buget = 0;
+        int age;
+        String account = "";
+        String currency = "";
+        String phone = "";
+        String ln = "";
+        String fn = "";
+        
+        
+        ClientInfo ci = new ClientInfo();
+        
+        ResultSet rs = execQuery("");
+        
+        return ci;
     }
         
     public static void main(String[] args){
         DBManager dbm = new DBManager();
         
         dbm.connectToDB();
-        dbm.executeQuery("SELECT * FROM Clients");
+        dbm.execQuery("SELECT * FROM Clients");
+        
+        System.out.println(dbm.userExists("andreip@yahoo.com", "12345"));
     }
     
 }
