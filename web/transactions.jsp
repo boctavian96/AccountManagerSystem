@@ -25,6 +25,7 @@
 				<li><a href="transactions.jsp">Transactions</a></li>
 				<li><a href="reports.jsp">Reports</a></li>
 				<li><a href="settings.jsp">Settings</a></li>
+                                <li><a href="main.jsp">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
