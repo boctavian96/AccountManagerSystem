@@ -44,7 +44,7 @@ public class DBManager {
         }
     }
     
-    private ResultSet execQuery(String query){
+    public ResultSet execQuery(String query){
         
         try{
          statement = connection.createStatement();
@@ -113,15 +113,6 @@ public class DBManager {
         ci = new ClientInfo(id, fn, ln, email, pass, phone, currency, account, buget, age);
         
         return ci;
-    }
-        
-    public static void main(String[] args){
-        DBManager dbm = new DBManager();
-        
-        dbm.connectToDB();
-        dbm.execQuery("SELECT * FROM Clients");
-        
-        System.out.println(dbm.userExists("andreip@yahoo.com", "12345"));
     }
     
 }

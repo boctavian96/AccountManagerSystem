@@ -4,6 +4,7 @@
     Author     : octavian
 --%>
 
+<%@page import="com.octavian.database.DBManager"%>
 <%@page import="com.octavian.genetators.*, com.octavian.models.ClientInfo" contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -20,9 +21,9 @@
     String password = CodeGenerator.generatePassword(20);
     String accountId = CodeGenerator.generateAccount(7);
     
-    ci = new ClientInfo(-1, firstname, lastname, accountId, uemail, phoneNb, currency, Integer.decode(age), 0);
-
-
+    ci = new ClientInfo(firstname, lastname, uemail, password, phoneNb, currency, accountId, 0, Integer.decode(age));
+    
+    
 %>
 
 <html>
