@@ -11,4 +11,7 @@ package com.octavian.config;
  */
 public interface Config {
     
+    String AVAILABLE = "Available";
+    String SPENDT = "Spendt";
+    
 }

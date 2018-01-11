@@ -5,8 +5,12 @@
 <head>
     
     <%
+    String username = (String)session.getAttribute("u_name");
+    String password = (String)session.getAttribute("u_pass");
+        
+        
     DBManager db = (DBManager)session.getAttribute("dbConnection");
-    ClientInfo ci = db.getClientInfo();
+    ClientInfo ci = db.getClientInfo(username, password);
     
     session.setAttribute("client_info", ci);
     %>
@@ -41,7 +45,7 @@
 	<div class="container">
 		<h3>Dashboard</h3>
 		<p>Find here info about your account</p>
-                <p><% out.print("Wellcome back <b>" + ci.getFirstName() + " !</b>"); %></p>
+                <p><% out.print("Wellcome back <b>" + ci.getFname()+ " !</b>"); %></p>
 		<br />
 		<br />
 		<br />
@@ -55,7 +59,7 @@
                         <br/>
 
                         <h4>
-                        Spending info - AccountID <% out.print(ci.getAccountID()); %>
+                        Spending info - AccountID <% out.print(ci.getAccount()); %>
                         </h4>
 		<div class="progress">
 			<div class="progress-bar progress-bar-success progress-bar-striped"

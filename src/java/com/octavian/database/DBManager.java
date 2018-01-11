@@ -44,7 +44,7 @@ public class DBManager {
         }
     }
     
-    public ResultSet execQuery(String query){
+    private ResultSet execQuery(String query){
         
         try{
          statement = connection.createStatement();
@@ -81,20 +81,36 @@ public class DBManager {
         return false;
     }
     
-    public ClientInfo getClientInfo(){
+    public ClientInfo getClientInfo(String email, String pass){
+        ClientInfo ci = null;
         int id = 0;
         int buget = 0;
-        int age;
+        int age = 0;
         String account = "";
         String currency = "";
         String phone = "";
         String ln = "";
         String fn = "";
         
+        rs = execQuery("SELECT * FROM Clients WHERE Email="+"\'"+email+"\' AND password=\'" + pass + "\'");
+
+        try{
+            if(rs.next()){
+                id = rs.getInt("ID");
+                buget = rs.getInt("amount");
+                age = rs.getInt("Age");
+                account = rs.getString("AccountID");
+                currency = rs.getString("Currency");
+                phone = rs.getString("Phone");
+                ln = rs.getString("LastName");
+                fn = rs.getString("FirstName");
+                
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
         
-        ClientInfo ci = new ClientInfo();
-        
-        ResultSet rs = execQuery("");
+        ci = new ClientInfo(id, fn, ln, email, pass, phone, currency, account, buget, age);
         
         return ci;
     }

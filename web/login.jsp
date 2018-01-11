@@ -82,10 +82,8 @@ span.psw {
 <% 
 	   DBManager dbm = new DBManager();
 	   dbm.connectToDB();
-           
-           ClientInfo ci;
 			
-           String redirectURL = "account.jsp";
+           final String redirectURL = "account.jsp";
            String user = request.getParameter("uname");
            String pass = request.getParameter("psw");
            
@@ -94,9 +92,12 @@ span.psw {
            
            if(dbm.userExists(user, pass)){
         	   response.sendRedirect(redirectURL);
+                   session.setAttribute("u_pass", pass);
+                   session.setAttribute("u_name", user);
            }
            
            session.setAttribute("dbConnection", dbm);
+           
            
            if(user.equals("admin") && pass.equals("admin")){
                response.sendRedirect(redirectURL);

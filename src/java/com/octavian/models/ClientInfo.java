@@ -19,8 +19,9 @@ public class ClientInfo {
     String currency;
     String account;
     int buget; 
+    int age;
 
-    public ClientInfo(int id, String fname, String lname, String email, String password, String phone, String currency, String account, int buget) {
+    public ClientInfo(int id, String fname, String lname, String email, String password, String phone, String currency, String account, int buget, int age) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -30,15 +31,17 @@ public class ClientInfo {
         this.currency = currency;
         this.account = account;
         this.buget = buget;
+        this.age = age;
     }
 
-    public ClientInfo(String fname, String lname, String email, String phone, String currency, int buget) {
+    public ClientInfo(String fname, String lname, String email, String phone, String currency, int buget, int age) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.phone = phone;
         this.currency = currency;
         this.buget = buget;
+        this.age = age;
     }
     
     public ClientInfo(){
