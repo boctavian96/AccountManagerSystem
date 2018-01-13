@@ -37,14 +37,14 @@ public class DatabaseActions {
         Random random = new Random();
         
         if(mode == 'u'){
-            sb.append("UPDATE Clients SET");
-            sb.append("LastName=\'"+ci.getLname()+"\',");
-            sb.append("FirstName=\'"+ci.getFname()+"\',");
-            sb.append("Age="+ci.getAge()+",");
-            sb.append("Phone=\'"+ci.getPhone()+"\',");
-            sb.append("Email=\'"+ci.getEmail()+"\',");
+            sb.append("UPDATE Clients SET ");
+            sb.append("LastName=\'"+ci.getLname()+"\', ");
+            sb.append("FirstName=\'"+ci.getFname()+"\', ");
+            sb.append("Age="+ci.getAge()+", ");
+            sb.append("Phone=\'"+ci.getPhone()+"\', ");
+            sb.append("Email=\'"+ci.getEmail()+"\', ");
             sb.append("password=\'"+ci.getPassword()+"\'");
-            sb.append("WHERE ID=" + ci.getId() + ";");
+            sb.append(" WHERE ID=" + ci.getId() + ";");
         }else if(mode == 'i'){
             int id = random.nextInt(1000000);
             sb.append("INSERT INTO Clients VALUES(");
