@@ -8,6 +8,7 @@ package com.octavian.database;
 import com.octavian.config.DbConfig;
 import com.octavian.models.ClientInfo;
 import com.octavian.models.TransactionInfo;
+import com.octavian.config.DbTableColumns;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -90,8 +91,8 @@ public class DBManager {
         try{
             if(rs.next()){
                 
-                user = rs.getString("Email");
-                pwd = rs.getString("password");
+                user = rs.getString(DbTableColumns.EMAIL);
+                pwd = rs.getString(DbTableColumns.PASSWORD);
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -123,12 +124,12 @@ public class DBManager {
         try{
             while(rs.next()){
       
-                id = rs.getInt("OrderID");
-                oid = rs.getInt("OrderNumber");
-                amount = rs.getInt("Amount");
-                Product = rs.getString("Product");
-                Entity = rs.getString("Entity");
-                date = rs.getDate("Date");
+                id = rs.getInt(DbTableColumns.ORDER_ID);
+                oid = rs.getInt(DbTableColumns.ORDER_NUMBER);
+                amount = rs.getInt(DbTableColumns.TRANSACTION_AMOUNT);
+                Product = rs.getString(DbTableColumns.PRODUCT);
+                Entity = rs.getString(DbTableColumns.ENTITY);
+                date = rs.getDate(DbTableColumns.DATE);
                 
                 ti.add(new TransactionInfo(id, oid, uid, amount, Product, Entity, date));
             }
@@ -141,12 +142,11 @@ public class DBManager {
     
     /**
      * 
-     * @param email
-     * @param pass
+     * @param query
      * @return 
      */
-    public ClientInfo getClientInfo(String email, String pass){
-        ClientInfo ci = null;
+    private ClientInfo getBackClientInfo(String query){
+                ClientInfo ci = null;
         int id = 0;
         int buget = 0;
         int age = 0;
@@ -155,19 +155,23 @@ public class DBManager {
         String phone = "";
         String ln = "";
         String fn = "";
+        String email = "";
+        String pass = "";
         
-        rs = execQuery("SELECT * FROM Clients WHERE Email="+"\'"+email+"\' AND password=\'" + pass + "\'");
+        rs = execQuery(query);
 
         try{
             if(rs.next()){
-                id = rs.getInt("ID");
-                buget = rs.getInt("amount");
-                age = rs.getInt("Age");
-                account = rs.getString("AccountID");
-                currency = rs.getString("Currency");
-                phone = rs.getString("Phone");
-                ln = rs.getString("LastName");
-                fn = rs.getString("FirstName");
+                id = rs.getInt(DbTableColumns.ID);
+                buget = rs.getInt(DbTableColumns.CLIENT_AMOUNT);
+                age = rs.getInt(DbTableColumns.AGE);
+                account = rs.getString(DbTableColumns.ACCOUNT_ID);
+                currency = rs.getString(DbTableColumns.CUR);
+                phone = rs.getString(DbTableColumns.PHONE);
+                ln = rs.getString(DbTableColumns.LAST_NAME);
+                fn = rs.getString(DbTableColumns.FIRST_NAME);
+                pass = rs.getString(DbTableColumns.PASSWORD);
+                email = rs.getString(DbTableColumns.EMAIL);
                 
             }
         }catch(SQLException e){
@@ -177,6 +181,25 @@ public class DBManager {
         ci = new ClientInfo(id, fn, ln, email, pass, phone, currency, account, buget, age);
         
         return ci;
+    }
+    
+    /**
+     * 
+     * @param email
+     * @param pass
+     * @return 
+     */
+    public ClientInfo getClientInfo(String email, String pass){
+       return getBackClientInfo("SELECT * FROM Clients WHERE Email="+"\'"+email+"\' AND password=\'" + pass + "\'");
+    }
+    
+    /**
+     * 
+     * @param account
+     * @return 
+     */
+    public ClientInfo getClientInfo(String account){
+        return getBackClientInfo("SELECT * FROM Clients WHERE Email="+"\'"+account+"\'");
     }
     
 }
