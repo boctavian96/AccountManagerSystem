@@ -28,7 +28,15 @@
     destinatar = dbm.getClientInfo(userAccount);
     destinatar = dbm.getClientInfo(userAccount);
     
-    ti = new TransactionInfo(random.nextInt(1000000), random.nextInt(1000000), destinatar.getId(), Amount, productName, ci.getFname() + " " + ci.getLname(), d);
-    
-    
+    if(ci.getBuget() >= Amount){
+        DatabaseActions updateAccount = new DatabaseActions();
+        int newBuget = ci.getBuget() - Amount;
+        ti = new TransactionInfo(random.nextInt(1000000), random.nextInt(1000000), destinatar.getId(), Amount, productName, ci.getFname() + " " + ci.getLname(), d);
+        ci.setBuget(newBuget);
+        
+        updateAccount.insertIntoDB(ci, 'u');
+        updateAccount.insertIntoDB(ti);
+    }else{
+        out.print("Insufficient funds !!!");
+    }
 %>

@@ -37,6 +37,7 @@
 	<div class="container">
 		<h2>Transactions Page</h2>
 		<p>Here you can view everything about your account transactions</p>
+                <p><a href="tranzactii.html">Do a transaction !</a></p>
 		<table class="table">
 			<thead>
 				<tr>
