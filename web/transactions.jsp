@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="com.octavian.database.DBManager"%>
+<%@page import="com.octavian.models.TransactionInfo"%>
+<%@page import="com.octavian.models.ClientInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,52 +41,37 @@
 			<thead>
 				<tr>
 					<th>Entity</th>
-					<th>Email</th>
+					<th>Product</th>
 					<th>Date</th>
-					<th>Amounth</th>
+					<th>Amount</th>
 				</tr>
 			</thead>
 			<tbody>
                             
                             <%
-                                for(int i = 0; i < 200; i++){
+                                ClientInfo ci = (ClientInfo)session.getAttribute("client_info");
+                                List<TransactionInfo> ti;
+                                DBManager dbm = new DBManager();
+                                dbm.connectToDB();
+                                ti = dbm.getTransactionInfo(ci.getId());
+                                
+                                
+                                for(TransactionInfo i : ti){
                                     
-                               
-                                out.print("<tr class=\"success\">");
-                                out.print("<td>BearingPoint SRL</td>");
-                                out.print("<td>BearingPoint SRL</td>");
-                                out.print("<td>BearingPoint SRL</td>");
-                                out.print("<td>+3000</td>");
+                                    if(i.getAmount() > 0){
+                                        out.print("<tr class=\"success\">");
+                                    }else{
+                                        out.print("<tr class=\"danger\">");
+                                    }
+                                    
+                                    out.print("<td>" + i.getEntity() + "</td>");
+                                    out.print("<td>" + i.getProduct() + "</td>");
+                                    out.print("<td>" + i.getDate() + "</td>");
+                                    out.print("<td>" + i.getAmount() + "</td>");
                                 
                                 }
                                 
                             %>
-                            
-                            
-				<tr class="success">
-					<td>BearingPoint SRL</td>
-					<td>bearingpoint@bp.de</td>
-					<td>14.06.2018</td>
-					<td>+3000</td>
-				</tr>
-				<tr class="danger">
-					<td>Profi SRL</td>
-					<td>hr@profi.ro</td>
-					<td>9.9.2018</td>
-					<td>-37</td>
-				</tr>
-				<tr class="danger">
-					<td>Pornhub.com</td>
-					<td>ph@pornhub.com</td>
-					<td>9.1.2018</td>
-					<td>-90</td>
-				</tr>
-				<tr class="danger">
-					<td>Fabrica de Bere TM</td>
-					<td>fabrica@timisoara.ro</td>
-					<td>11.1.2018</td>
-					<td>-350</td>
-				</tr>
 			</tbody>
 		</table>
 
