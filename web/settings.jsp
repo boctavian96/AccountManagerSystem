@@ -75,7 +75,7 @@
     </div>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-      <input id="password" type="password" class="form-control" name="user_pass" value=<% out.print("12345"); %>>
+      <input id="password" type="password" class="form-control" name="user_pass" value=<% out.print(ci.getPassword()); %>>
     </div>
     <br/>
     <br/>

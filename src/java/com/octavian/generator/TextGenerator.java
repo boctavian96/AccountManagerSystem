@@ -15,7 +15,7 @@ public class TextGenerator {
     private static final String UPPER_CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM";
     private static final String LOWER_CHARACTERS = "qwertyuiopasdfghjklzxcvbnm";
     private static final String NUMBER_CHARACTERS = "1234567890";
-    private static final String SPECIAL_CHARACTERS = "!@#$%^&*?+";
+    private static final String SPECIAL_CHARACTERS = "!@#$%^*?+";
     
     private TextGenerator(){
     }

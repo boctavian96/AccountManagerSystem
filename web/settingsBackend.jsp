@@ -22,6 +22,5 @@
     String pass = request.getParameter("user_pass");
     
     ci = new ClientInfo(oldInfo.getId(), fn, ln, email, pass, phone, currency, Integer.decode(age));
-    out.print(ci);
     da.insertIntoDB(ci, 'u');
 %>
