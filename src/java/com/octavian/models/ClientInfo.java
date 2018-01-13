@@ -133,6 +133,14 @@ public class ClientInfo {
     public void setBuget(int buget) {
         this.buget = buget;
     }
+    
+    public int getAge(){
+        return age;
+    }
+    
+    public void setAge(int age){
+        this.age = age;
+    }
 
     @Override
     public String toString() {

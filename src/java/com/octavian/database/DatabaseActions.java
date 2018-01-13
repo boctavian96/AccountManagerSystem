@@ -18,6 +18,8 @@ package com.octavian.database;
 
 import com.octavian.models.ClientInfo;
 import com.octavian.models.TransactionInfo;
+import com.octavian.database.DBManager;
+import java.util.Random;
 
 /**
  *
@@ -25,15 +27,35 @@ import com.octavian.models.TransactionInfo;
  */
 public class DatabaseActions {
     
-    public DatabaseActions(){
+    public static void insertIntoDB(ClientInfo ci, char mode){
+        DBManager dbm;
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
         
+        if(mode == 'u'){
+            sb.append("UPDATE * FROM SET  Clients WHERE ID=");
+            sb.append(ci.getId());
+        }else if(mode == 'i'){
+            int id = random.nextInt(1000000);
+            sb.append("INSERT INTO Clients VALUES(");
+            sb.append(id).append(", ");
+            sb.append(ci.getLname()).append(", ");
+            sb.append(ci.getFname()).append(", ");
+            sb.append(ci.getAge()).append(", ");
+            sb.append(ci.getEmail()).append(", ");
+            sb.append(ci.getPhone()).append(", ");
+            sb.append(ci.getCurrency()).append(", ");
+            sb.append(ci.getAccount()).append(", ");
+            sb.append(ci.getBuget()).append(", ");
+            sb.append(ci.getPassword()).append(");");
+            sb.append(ci.getId());
+        }
+        
+        dbm = new DBManager();
+        dbm.execQuery(sb.toString());
     }
     
-    public void insertIntoDB(ClientInfo ci, char mode){
-        
-    }
-    
-    public void insertIntoDB(TransactionInfo ti, char mode){
+    public static void insertIntoDB(TransactionInfo ti, char mode){
         
     }
 }

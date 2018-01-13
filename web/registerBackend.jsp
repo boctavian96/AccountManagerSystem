@@ -5,11 +5,11 @@
 --%>
 
 <%@page import="com.octavian.database.DBManager"%>
-<%@page import="com.octavian.genetators.*, com.octavian.models.ClientInfo" contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.octavian.genetators.*, com.octavian.models.ClientInfo, com.octavian.database.DatabaseActions" contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <% 
-
+    DatabaseActions da;
     ClientInfo ci = null;
     
     String firstname = request.getParameter("first_name");
@@ -22,7 +22,7 @@
     String accountId = CodeGenerator.generateAccount(7);
     
     ci = new ClientInfo(firstname, lastname, uemail, password, phoneNb, currency, accountId, 0, Integer.decode(age));
-    
+    da.insertIntoDB(ci, 'i');
     
 %>
 

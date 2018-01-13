@@ -52,7 +52,7 @@
                 
                 <h3>
 			Account Balance:
-                        <% out.print(ci.getBuget() + " " + ci.getBuget()); %>
+                        <% out.print(ci.getBuget() + " " + ci.getCurrency()); %>
 		</h3>
                         
                         <br/>
