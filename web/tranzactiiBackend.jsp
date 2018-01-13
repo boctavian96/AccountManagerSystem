@@ -4,6 +4,7 @@
     Author     : octavian
 --%>
 
+<%@page import="com.octavian.database.DatabaseActions"%>
 <%@page import="com.octavian.database.DBManager"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.util.Random"%>
@@ -14,7 +15,8 @@
 <%
     Random random = new Random();
     Date d = new Date(30149149);
-    DBManager dbm = new DBManager()    
+    DBManager dbm = new DBManager();    
+    DatabaseActions dac = new DatabaseActions();
     ClientInfo ci = (ClientInfo)session.getAttribute("client_info");
     TransactionInfo ti = null;
     String productName = (String)request.getAttribute("product_name");
@@ -24,6 +26,9 @@
     dbm.connectToDB();
     ClientInfo destinatar;
     destinatar = dbm.getClientInfo(userAccount);
+    destinatar = dbm.getClientInfo(userAccount);
     
-    ti = new TransactionInfo(random.nextInt(1000000), random.nextInt(1000000), client_id, Amount, productName, ci.getFname() + " " + ci.getLname(), d);
+    ti = new TransactionInfo(random.nextInt(1000000), random.nextInt(1000000), destinatar.getId(), Amount, productName, ci.getFname() + " " + ci.getLname(), d);
+    
+    
 %>

@@ -77,7 +77,19 @@ public class DatabaseActions {
      * @param ti TransactionInfo
      * @param mode UPDATE = 'u' or INSERT 'i'
      */
-    public static void insertIntoDB(TransactionInfo ti, char mode){
+    public static void insertIntoDB(TransactionInfo ti){
+            StringBuilder sb = new StringBuilder();
         
+        
+            sb.append("INSERT INTO Transactions VALUES(");
+
+            sb.append(ti.getId()).append(", ");
+            sb.append(ti.getOrd_id()).append(", ");
+            sb.append(ti.getClient_id()).append(", ");
+            sb.append(ti.getAmount()).append(", ");
+            sb.append("\'" +ti.getProduct()).append("\', ");
+            sb.append("\'" +ti.getEntity()).append("\', ");
+            sb.append("\'" +ti.getDate()).append("\', ");
+            sb.append(");");
     }
 }
