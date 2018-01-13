@@ -31,6 +31,11 @@ public class DatabaseActions {
         
     }
     
+    /**
+     * Insert data in DB
+     * @param ci ClientInfo
+     * @param mode UPDATE = 'u' or INSERT 'i'
+     */
     public static void insertIntoDB(ClientInfo ci, char mode){
         DBManager dbm;
         StringBuilder sb = new StringBuilder();
@@ -67,6 +72,11 @@ public class DatabaseActions {
 
     }
     
+    /**
+     * Insert data in DB
+     * @param ti TransactionInfo
+     * @param mode UPDATE = 'u' or INSERT 'i'
+     */
     public static void insertIntoDB(TransactionInfo ti, char mode){
         
     }
