@@ -9,17 +9,19 @@
 <!DOCTYPE html>
 
 <% 
-    DatabaseActions da;
-    ClientInfo ci = null;
+    DatabaseActions da = new DatabaseActions();
+    ClientInfo ci;
     
     String firstname = request.getParameter("first_name");
     String lastname = request.getParameter("last_name");
     String age = request.getParameter("user_age");
     String phoneNb = request.getParameter("user_phone");
-    String currency = request.getParameter("user_currency");
+    String currency = request.getParameter("user_cur");
     String uemail = request.getParameter("user_email");
     String password = CodeGenerator.generatePassword(20);
     String accountId = CodeGenerator.generateAccount(7);
+    
+    out.print(firstname + lastname + age + phoneNb + currency + uemail + password + accountId);
     
     ci = new ClientInfo(firstname, lastname, uemail, password, phoneNb, currency, accountId, 0, Integer.decode(age));
     da.insertIntoDB(ci, 'i');

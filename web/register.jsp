@@ -41,27 +41,27 @@
                       
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="first_name" type="text" class="form-control" name="email" placeholder="FirstName">
+      <input id="first_name" type="text" class="form-control" name="first_name" placeholder="FirstName">
     </div>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input id="last_name" type="text" class="form-control" name="email" placeholder="LastName">
+      <input id="last_name" type="text" class="form-control" name="last_name" placeholder="LastName">
     </div>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-tree-deciduous"></i></span>
-      <input id="user_age" type="text" class="form-control" name="email" placeholder="Age">
+      <input id="user_age" type="text" class="form-control" name="user_age" placeholder="Age">
     </div>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-      <input id="email" type="text" class="form-control" name="email" placeholder="PhoneNumber">
+      <input id="user_phone" type="text" class="form-control" name="user_phone" placeholder="PhoneNumber">
     </div>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-      <input id="email" type="text" class="form-control" name="email" placeholder="Currency">
+      <input id="user_cur" type="text" class="form-control" name="user_cur" placeholder="Currency">
     </div>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-      <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+      <input id="user_email" type="text" class="form-control" name="user_email" placeholder="Email">
     </div>
     <br/>
     <br/>

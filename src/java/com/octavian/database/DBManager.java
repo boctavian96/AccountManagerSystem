@@ -44,6 +44,25 @@ public class DBManager {
         }
     }
     
+    /**
+     * ONLY Updates and Inserts
+     * @param query 
+     */
+    public void execute(String query)
+    {
+        try{
+            statement = connection.createStatement();
+            statement.execute(query);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * ONLY for selects !!!
+     * @param query
+     * @return 
+     */
     public ResultSet execQuery(String query){
         
         try{
