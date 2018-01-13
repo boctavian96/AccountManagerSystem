@@ -55,6 +55,17 @@ public class ClientInfo {
         this.buget = buget;
         this.age = age;
     }
+
+    public ClientInfo(int id, String fname, String lname, String email, String password, String phone, String currency, int age) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.currency = currency;
+        this.age = age;
+    }
     
     public ClientInfo(){
         
