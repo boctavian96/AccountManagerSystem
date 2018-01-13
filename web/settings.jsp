@@ -47,7 +47,7 @@
 
 %>
                 
-                <form action="settingsBackend.jsp">
+    <form action="settingsBackend.jsp">
                       
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
