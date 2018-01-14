@@ -1,3 +1,10 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.octavian.models.TransactionInfo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.octavian.models.ClientInfo"%>
+<%@page import="com.octavian.funds.ReportEngine"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -38,6 +45,47 @@
 		<br />
 		<br />
 		<br />
+                
+                
+        <%
+        ClientInfo ci = (ClientInfo)session.getAttribute("client_info");
+        ReportEngine re = new ReportEngine(ci.getId());
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        String month = dateFormat.format(date);
+        
+        re.calculateIncomeExpenses(Integer.decode(month) - 1);
+    
+        int income = re.getIncome();
+        int expenses = re.getExpenses();
+        
+        float incomePr = 0;
+        float expensesPr = 0;
+        
+        if(income != 0){
+            incomePr = ((float)income/(income-expenses))*100f;
+        }
+        
+        if(expenses != 0){
+            expensesPr = -((float)expenses/(income-expenses))*100f;
+        }
+        
+        
+        
+        out.println("<p>Buget pe " + month + " : " + ci.getBuget() + "</p>");
+        out.println("<p>This month income : " + income + " </p>");
+        out.println("<p>This month expenses : " + expenses + " </p>");
+        
+        %>
+        
+        <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" style="width:<% out.print(incomePr); %>%">
+        Income <% out.print("(                                                                        %)"); %>
+    </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<% out.print(expensesPr); %>%">
+      Expense
+    </div>
+    </div>
 
 	</div>
 
