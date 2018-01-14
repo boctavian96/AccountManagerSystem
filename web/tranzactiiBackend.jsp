@@ -4,6 +4,10 @@
     Author     : octavian
 --%>
 
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="com.octavian.database.DatabaseActions"%>
 <%@page import="com.octavian.database.DBManager"%>
 <%@page import="java.sql.Date"%>
@@ -14,7 +18,10 @@
 
 <%
     Random random = new Random();
-    Date d = new Date(30149149);
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    LocalDate localDate = LocalDate.now();
+    
+    Date d = Date.valueOf(localDate);
     DBManager dbm = new DBManager();    
     DatabaseActions dac = new DatabaseActions();
     ClientInfo ci = (ClientInfo)session.getAttribute("client_info");
@@ -39,7 +46,7 @@
         int newBugetDestinatar = destinatar.getBuget() + am;
         
         
-        ti = new TransactionInfo(tid, productId, ci.getId(), -am, productName, ci.getFname() + " " + ci.getLname(), d);
+        ti = new TransactionInfo(tid, productId, ci.getId(), -am, productName, destinatar.getFname() + " " + ci.getLname(), d);
         ti_destinatar = new TransactionInfo(tid2, productId, destinatar.getId(), am, productName, ci.getFname() + " " + ci.getLname(), d);
         ci.setBuget(newBuget);
         destinatar.setBuget(newBugetDestinatar);
