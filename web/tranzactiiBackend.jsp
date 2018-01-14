@@ -19,22 +19,25 @@
     DatabaseActions dac = new DatabaseActions();
     ClientInfo ci = (ClientInfo)session.getAttribute("client_info");
     TransactionInfo ti = null;
-    String productName = (String)request.getAttribute("product_name");
-    int Amount = Integer.decode((String)request.getAttribute("product_amount"));
-    String userAccount = (String)request.getAttribute("user_account_id");
+    String productName = (String)request.getParameter("product_name");
+    String Amount = (String)request.getParameter("product_amount");
+    int am = Integer.decode(Amount);
+    String userAccount = (String)request.getParameter("user_account_id");
     
     dbm.connectToDB();
     ClientInfo destinatar;
     destinatar = dbm.getClientInfo(userAccount);
-    destinatar = dbm.getClientInfo(userAccount);
+    dbm.closeConnection();
     
-    if(ci.getBuget() >= Amount){
+    if(ci.getBuget() >= am && am > 0){
         DatabaseActions updateAccount = new DatabaseActions();
-        int newBuget = ci.getBuget() - Amount;
-        ti = new TransactionInfo(random.nextInt(1000000), random.nextInt(1000000), destinatar.getId(), Amount, productName, ci.getFname() + " " + ci.getLname(), d);
+
+        int newBuget = ci.getBuget() - am;
+        ti = new TransactionInfo(random.nextInt(1000000), random.nextInt(1000000), destinatar.getId(), am, productName, ci.getFname() + " " + ci.getLname(), d);
         ci.setBuget(newBuget);
         
         updateAccount.insertIntoDB(ci, 'u');
+        updateAccount.insertIntoDB(destinatar, 'u');
         updateAccount.insertIntoDB(ti);
     }else{
         out.print("Insufficient funds !!!");

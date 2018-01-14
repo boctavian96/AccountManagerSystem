@@ -48,6 +48,7 @@ public class DatabaseActions {
             sb.append("Age="+ci.getAge()+", ");
             sb.append("Phone=\'"+ci.getPhone()+"\', ");
             sb.append("Email=\'"+ci.getEmail()+"\', ");
+            sb.append("amount="+ci.getBuget()+ ", ");
             sb.append("password=\'"+ci.getPassword()+"\'");
             sb.append(" WHERE ID=" + ci.getId() + ";");
         }else if(mode == 'i'){
@@ -62,13 +63,14 @@ public class DatabaseActions {
             sb.append("\'" +ci.getCurrency()).append("\', ");
             sb.append("\'" +ci.getAccount()).append("\', ");
             sb.append(ci.getBuget()).append(", ");
-            sb.append("\'" +ci.getPassword()).append("\');");
+            sb.append("\'" +ci.getPassword()).append("\' );");
         }
         
         dbm = new DBManager();
         dbm.connectToDB();
-        System.out.println(sb.toString());
+        System.out.println(sb.toString()); //DEBUG
         dbm.execute(sb.toString());
+        dbm.closeConnection();
 
     }
     
@@ -78,6 +80,7 @@ public class DatabaseActions {
      * @param mode UPDATE = 'u' or INSERT 'i'
      */
     public static void insertIntoDB(TransactionInfo ti){
+            DBManager dbm;
             StringBuilder sb = new StringBuilder();
         
         
@@ -89,7 +92,13 @@ public class DatabaseActions {
             sb.append(ti.getAmount()).append(", ");
             sb.append("\'" +ti.getProduct()).append("\', ");
             sb.append("\'" +ti.getEntity()).append("\', ");
-            sb.append("\'" +ti.getDate()).append("\', ");
+            sb.append("\'" +ti.getDate()).append("\' ");
             sb.append(");");
+            
+            dbm = new DBManager();
+            dbm.connectToDB();
+            System.out.println(sb.toString() + "HEEEEEREEEE !!");
+            dbm.execute(sb.toString()); //DEBUG
+            dbm.closeConnection();
     }
 }

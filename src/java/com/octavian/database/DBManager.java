@@ -199,7 +199,14 @@ public class DBManager {
      * @return 
      */
     public ClientInfo getClientInfo(String account){
-        return getBackClientInfo("SELECT * FROM Clients WHERE Email="+"\'"+account+"\'");
+        return getBackClientInfo("SELECT * FROM Clients WHERE AccountID="+"\'"+account+"\'");
     }
     
+    public void closeConnection(){
+        try{
+            connection.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
