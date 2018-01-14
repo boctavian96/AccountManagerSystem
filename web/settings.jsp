@@ -7,7 +7,7 @@
 
 <html lang="en">
 <head>
-<title>Utopia Bank - Dashboard</title>
+<title>Utopia Bank - Settings</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"

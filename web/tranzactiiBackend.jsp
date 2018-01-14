@@ -55,7 +55,10 @@
         updateAccount.insertIntoDB(destinatar, 'u');
         updateAccount.insertIntoDB(ti);
         updateAccount.insertIntoDB(ti_destinatar);
+        
     }else{
         out.print("Insufficient funds !!!");
     }
+    
+    response.sendRedirect("transations.jsp");
 %>

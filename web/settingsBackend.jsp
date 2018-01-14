@@ -23,4 +23,6 @@
     
     ci = new ClientInfo(oldInfo.getId(), fn, ln, email, pass, phone, currency, Integer.decode(age));
     da.insertIntoDB(ci, 'u');
+    
+    response.sendRedirect("account.jsp");
 %>

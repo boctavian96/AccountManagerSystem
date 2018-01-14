@@ -26,4 +26,6 @@
     ci = new ClientInfo(firstname, lastname, uemail, password, phoneNb, currency, accountId, 0, Integer.decode(age));
     da.insertIntoDB(ci, 'i');
     
+    response.sendRedirect("main.jsp");
+    
 %>
