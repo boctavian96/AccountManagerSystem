@@ -80,10 +80,10 @@
         
         <div class="progress">
     <div class="progress-bar progress-bar-success" role="progressbar" style="width:<% out.print(incomePr); %>%">
-        Income <% out.print("(                                                                        %)"); %>
+        Income <% out.print("( "+ incomePr +" %)"); %>
     </div>
             <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<% out.print(expensesPr); %>%">
-      Expense
+                Expense <% out.print("( " + expensesPr + " %)"); %>
     </div>
     </div>
 

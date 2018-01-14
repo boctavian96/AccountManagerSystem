@@ -50,6 +50,11 @@
 		<br />
 		<br />
                 
+                <%
+                
+                
+                %>
+                
                 <h3>
 			Account Balance:
                         <% out.print(ci.getBuget() + " " + ci.getCurrency()); %>
