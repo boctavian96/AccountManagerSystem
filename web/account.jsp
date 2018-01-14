@@ -1,3 +1,7 @@
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.octavian.funds.ReportEngine"%>
 <%@ page language="java" import ="com.octavian.config.*, com.octavian.models.*, com.octavian.database.*" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,6 +17,15 @@
     ClientInfo ci = db.getClientInfo(username, password);
     
     session.setAttribute("client_info", ci);
+    
+    ReportEngine re = new ReportEngine(ci.getId());
+    DateFormat dateFormat = new SimpleDateFormat("MM");
+    
+    Date d = new Date();
+    String month = dateFormat.format(d);
+    
+    re.calculateIncomeExpenses(Integer.decode(month) - 1);
+    int expenses = re.getExpenses();
     %>
     
 <title>Utopia Bank - Dashboard</title>
@@ -50,11 +63,6 @@
 		<br />
 		<br />
                 
-                <%
-                
-                
-                %>
-                
                 <h3>
 			Account Balance:
                         <% out.print(ci.getBuget() + " " + ci.getCurrency()); %>
@@ -66,21 +74,8 @@
                         <h4>
                         Spending info - AccountID <% out.print(ci.getAccount()); %>
                         </h4>
-		<div class="progress">
-			<div class="progress-bar progress-bar-success progress-bar-striped"
-				role="progressbar" aria-valuenow="40" aria-valuemin="0"
-				aria-valuemax="100" style="width: 25%">
-				<% out.print(Config.AVAILABLE + " " + ci.getBuget()); %>
-			</div>
-		</div>
 
-		<div class="progress">
-			<div class="progress-bar progress-bar-danger progress-bar-striped"
-				role="progressbar" aria-valuenow="70" aria-valuemin="0"
-				aria-valuemax="100" style="width: 10%">
-				<% out.print(Config.SPENDT); %>
-			</div>
-                </div>
+                        <h4>Spendt : <% out.print(-expenses); %></h4>
 
 		<br />
 		<br />
