@@ -60,5 +60,5 @@
         out.print("Insufficient funds !!!");
     }
     
-    response.sendRedirect("transations.jsp");
+    response.sendRedirect("transactions.jsp");
 %>
